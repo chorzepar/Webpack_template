@@ -44,7 +44,8 @@ module.exports = {
         contentBase: path.join(__dirname, "dist"),
         compress: true,
         stats: "errors-only",
-        open: true
+        open: true,
+        port: 9000
     }
 
 }

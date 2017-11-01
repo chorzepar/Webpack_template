@@ -1,5 +1,12 @@
 @import "base/_reset";
+
+//Import helpers
 @import "helpers/_variables";
+@import "helpers/_mixins.scss";
+@import "helpers/_functions.scss";
+
+// Import base
+@import "base/_typography";
 
 
 html{
@@ -18,10 +25,4 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-h1{
-    color: $headerFontColor;
-    font-size: 2rem;
-    text-transform: uppercase;
 }

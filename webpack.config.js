@@ -4,7 +4,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
 
-    entry: "./src/app.js",
+    entry: "./src/js/app.js",
     output: {
         path: path.resolve(__dirname, "dist/"),
         filename: "app.bundle.js"
@@ -13,13 +13,36 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.pug$/,
+                loaders: ['raw-loader', 'pug-html-loader'],
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ["es2015"]
+                    }
+                }
+            },
+            {
                 test: /\.scss$/,
                 use: ExtractTextPlugin.extract({
                     fallback: "style-loader",
                     use: ["css-loader", "sass-loader"],
                     publicPath: "./dist"
                 })
-            }
+            },
+            {
+                test: /\.(png|jpg|gif)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {}
+                    }
+                ]
+            },
         ]
     },
 
@@ -31,7 +54,7 @@ module.exports = {
             favicon: "./src/favicon.png",
             hash: true,
             title: "Webpack Starter",
-            template: "./src/index.ejs"
+            template: "./src/index.pug"
         }),
         new ExtractTextPlugin({
             filename: "bundle.css",
@@ -44,8 +67,7 @@ module.exports = {
         contentBase: path.join(__dirname, "dist"),
         compress: true,
         stats: "errors-only",
-        open: true,
-        port: 9000
+        open: true
     }
 
 }

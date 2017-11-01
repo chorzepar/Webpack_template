@@ -1,0 +1,27 @@
+@import "_reset";
+@import "_variables";
+
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    font-family: $fontFamily;
+    font-size: 1.4rem;
+    font-weight: 300;
+    background-color: $backgroundColor;
+}
+
+.container{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+    color: $headerFontColor;
+    font-size: 2rem;
+    text-transform: uppercase;
+}
